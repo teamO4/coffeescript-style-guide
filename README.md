@@ -2,22 +2,6 @@
 
 This guide presents a collection of best-practices and coding conventions for the [CoffeeScript][coffeescript] programming language.
 
-This guide is intended to be community-driven, and contributions are highly encouraged.
-
-Please note that this is a work-in-progress: there is much more that can be specified, and some of the guidelines that have been specified may not be deemed to be idiomatic by the community (in which case, these offending guidelines will be modified or removed, as appropriate).
-
-## Inspiration
-
-The details in this guide have been very heavily inspired by several existing style guides and other resources. In particular:
-
-- [PEP-8][pep8]: Style Guide for Python Code
-- Bozhidar Batsov's [Ruby Style Guide][ruby-style-guide]
-- [Google's JavaScript Style Guide][google-js-styleguide]
-- [Common CoffeeScript Idioms][common-coffeescript-idioms]
-- Thomas Reynolds' [CoffeeScript-specific Style Guide][coffeescript-specific-style-guide]
-- Jeremy Ashkenas' [code review][spine-js-code-review] of [Spine][spine-js]
-- The [CoffeeScript FAQ][coffeescript-faq]
-
 ## Table of Contents
 
 * [The CoffeeScript Style Guide](#guide)
@@ -54,7 +38,7 @@ Use **spaces only**, with **2 spaces** per indentation level. Never mix tabs and
 <a name="maximum_line_length"/>
 ### Maximum Line Length
 
-Limit all lines to a maximum of 79 characters.
+Limit all lines to a maximum of 300 characters.
 
 <a name="blank_lines"/>
 ### Blank Lines
@@ -228,8 +212,6 @@ Use `camelCase` (with a leading lowercase character) to name all variables, meth
 
 Use `CamelCase` (with a leading uppercase character) to name all classes. _(This style is also commonly referred to as `PascalCase`, `CamelCaps`, or `CapWords`, among [other alternatives][camel-case-variations].)_
 
-_(The **official** CoffeeScript convention is camelcase, because this simplifies interoperability with JavaScript. For more on this decision, see [here][coffeescript-issue-425].)_
-
 For constants, use all uppercase with underscores:
 
 ```coffeescript
@@ -247,11 +229,11 @@ _privateMethod: ->
 
 _(These guidelines also apply to the methods of a class.)_
 
-When declaring a function that takes arguments, always use a single space after the closing parenthesis of the arguments list:
+When declaring a function that takes arguments, NEVER use a single space after the closing parenthesis of the arguments list:
 
 ```coffeescript
-foo = (arg1, arg2) -> # Yes
-foo = (arg1, arg2)-> # No
+foo = (arg1, arg2)-> # Yes
+foo = (arg1, arg2) -> # No
 ```
 
 Do not use parentheses when declaring functions that take no arguments:
@@ -310,7 +292,7 @@ In cases where method calls are being chained, some adopters of this style prefe
 (($ '#selektor').addClass 'klass').hide() # All calls
 ```
 
-The function grouping style is not recommended. However, **if the function grouping style is adopted for a particular project, be consistent with its usage.**
+Try not to use the function grouping style when it is not necessary.
 
 <a name="strings"/>
 ## Strings
@@ -397,7 +379,7 @@ For example, do not modify `Array.prototype` to introduce `Array#forEach`.
 <a name="exceptions"/>
 ## Exceptions
 
-Do not suppress exceptions.
+Do not suppress exceptions. VERY VERY IMPORTANT!!
 
 <a name="annotations"/>
 ## Annotations
@@ -430,7 +412,7 @@ Annotation types:
 - `HACK`: describe the use of a questionable (or ingenious) coding practice
 - `REVIEW`: describe code that should be reviewed to confirm implementation
 
-If a custom annotation is required, the annotation should be documented in the project's README.
+If a custom annotation is required, begin it with two exclamatory signs !!
 
 <a name="miscellaneous"/>
 ## Miscellaneous
@@ -464,14 +446,14 @@ return @property # Yes
 return this.property # No
 ```
 
-However, avoid the use of **standalone** `@`:
+the use of **standalone** `@`is also preferred:
 
 ```coffeescript
-return this # Yes
-return @ # No
+return this # No
+return @ # Yes
 ```
 
-Avoid `return` where not required, unless the explicit return increases clarity.
+Avoid `return` where not required, unless the explicit return **increases clarity**.
 
 Use splats (`...`) when working with functions that accept variable numbers of arguments:
 
@@ -481,14 +463,9 @@ console.log args... # Yes
 (a, b, c, rest...) -> # Yes
 ```
 
+*** materials used for writing this guid ***
 [coffeescript]: http://jashkenas.github.com/coffee-script/
-[coffeescript-issue-425]: https://github.com/jashkenas/coffee-script/issues/425
-[spine-js]: http://spinejs.com/
-[spine-js-code-review]: https://gist.github.com/1005723
-[pep8]: http://www.python.org/dev/peps/pep-0008/
-[ruby-style-guide]: https://github.com/bbatsov/ruby-style-guide
-[google-js-styleguide]: http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
 [common-coffeescript-idioms]: http://arcturo.github.com/library/coffeescript/04_idioms.html
 [coffeescript-specific-style-guide]: http://awardwinningfjords.com/2011/05/13/coffeescript-specific-style-guide.html
 [coffeescript-faq]: https://github.com/jashkenas/coffee-script/wiki/FAQ
-[camel-case-variations]: http://en.wikipedia.org/wiki/CamelCase#Variations_and_synonyms
+
